@@ -2,13 +2,21 @@ import React from "react";
 
 function ArtistEntry(props) {
   return (
-    <div className="Artistcont">
-      <h1 className="ArtistRank">{props.pos}</h1>
-      <img src={props.img} className="EntryArtistImg"></img>
+    <div className="container text-center">
+      <div className="row align-items-start">
+        <div class="col-2">
+          <h1 className="rank">{props.pos}</h1>
+        </div>
+        <div class="col-2">
+          <img src={props.img} className="EntryImg"></img>
+        </div>
+        <div class="col-8">
+          <p className="Artist">{props.artist}</p>
+        </div>
+      </div>
 
-      <p className="ArtistName">{props.artist}</p>
+      <div className="entryText"></div>
     </div>
   );
 }
-
 export default ArtistEntry;

@@ -5,6 +5,7 @@ import axios from "axios";
 import { Buffer } from "buffer";
 import Entry from "./components/Entry";
 import queryString from "query-string";
+import NowPlaying from "./components/NowPlaying";
 
 function App() {
   const client_id = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
@@ -22,13 +23,17 @@ function App() {
   const [shortartists, setshortart] = useState([]);
   const [medartists, setmediumart] = useState([]);
   const [longartists, setlongart] = useState([]);
+  const [nowplaying, setnowplaying] = useState({});
   // const [timerange, setTimeRange] = useState("short_term");
 
   const [short, setshortbool] = useState(true);
   const [medium, setmediumbool] = useState(false);
   const [long, setlongbool] = useState(false);
-  const [trackbool, setTrackBool] = useState(false);
-  const [artistbool, setArtistBool] = useState(true);
+  const [trackbool, setTrackBool] = useState(true);
+  const [artistbool, setArtistBool] = useState(false);
+  const [nowplayingbool, setplayingbool] = useState(false);
+
+  const [visible, setvisibility] = useState("visible");
 
   const basic = Buffer.from(`${client_id}:${client_secret}`).toString("base64");
   const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
@@ -95,29 +100,57 @@ function App() {
     setshortbool(true);
     setmediumbool(false);
     setlongbool(false);
+    setplayingbool(false);
   }
 
   function mediumterm() {
     setshortbool(false);
     setmediumbool(true);
     setlongbool(false);
+    setplayingbool(false);
   }
 
   function longterm() {
     setshortbool(false);
     setmediumbool(false);
     setlongbool(true);
+    setplayingbool(false);
   }
 
   function trackchange() {
     setArtistBool(false);
     setTrackBool(true);
+    setplayingbool(false);
+    setvisibility("visible");
   }
 
   function artistchange() {
     setArtistBool(true);
     setTrackBool(false);
+    setplayingbool(false);
+    setvisibility("visible");
   }
+
+  function nowplayingchange() {
+    getPlaying();
+    setArtistBool(false);
+    setTrackBool(false);
+    setplayingbool(true);
+    setvisibility("hidden");
+  }
+  const getPlaying = async () => {
+    const response = await getNowPlaying();
+    const ke = response.json();
+    ke.then(function (result) {
+      const nowplayingobject = {
+        img: result.item.album.images[0].url,
+        artist: result.item.album.artists[0].name,
+        song: result.item.name,
+      };
+
+      setnowplaying(nowplayingobject);
+    });
+  };
 
   const getTracks = async () => {
     const response1 = await getTopTracks("short_term");
@@ -608,15 +641,30 @@ function App() {
         <button className="TimeButton" onClick={artistchange}>
           Artists
         </button>
+        <button className="TimeButton" onClick={nowplayingchange}>
+          Now Playing
+        </button>
       </div>
       <div className="buttoncont2">
-        <button className="TimeButton" onClick={shortterm}>
+        <button
+          className="TimeButton"
+          onClick={shortterm}
+          style={{ visibility: visible }}
+        >
           This Month
         </button>
-        <button className="TimeButton" onClick={mediumterm}>
+        <button
+          style={{ visibility: visible }}
+          className="TimeButton"
+          onClick={mediumterm}
+        >
           Last 6 Months
         </button>
-        <button className="TimeButton" onClick={longterm}>
+        <button
+          style={{ visibility: visible }}
+          className="TimeButton"
+          onClick={longterm}
+        >
           All Time
         </button>
       </div>
@@ -705,6 +753,16 @@ function App() {
               />
             );
           })}
+        </div>
+      )}
+
+      {nowplayingbool && (
+        <div>
+          <NowPlaying
+            img={nowplaying.img}
+            artist={nowplaying.artist}
+            song={nowplaying.song}
+          />
         </div>
       )}
     </div>

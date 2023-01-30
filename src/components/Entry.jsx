@@ -2,13 +2,21 @@ import React from "react";
 
 function Entry(props) {
   return (
-    <div className="cont">
-      <h1 className="rank">{props.pos}</h1>
-      <img src={props.img} className="EntryImg"></img>
-      <div className="entryText">
-        <h1 className="SongName">{props.name}</h1>
-        <p className="Artist">{props.artist}</p>
+    <div className="container text-center">
+      <div className="row align-items-start">
+        <div class="col-2">
+          <h1 className="rank">{props.pos}</h1>
+        </div>
+        <div class="col-2">
+          <img src={props.img} className="EntryImg"></img>
+        </div>
+        <div class="col-8">
+          <h1 className="SongName">{props.name}</h1>
+          <p className="Artist">{props.artist}</p>
+        </div>
       </div>
+
+      <div className="entryText"></div>
     </div>
   );
 }

@@ -1,4 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Arimo&display=swap");
+
+@font-face {
+  font-family: "Gotham";
+  src: url(../src/fonts/Gotham-Black.otf);
+}
+
 body {
   height: 100%;
   background-color: black;
@@ -46,27 +52,33 @@ body {
   border: white 1px solid;
 }
 
+.container {
+  margin-top: 20px !important;
+  border: 4px white solid;
+  border-radius: 20px;
+}
+
 .EntryImg {
   height: auto;
   width: auto;
-  max-width: 70px;
-  max-height: 70px;
-  float: left;
-  padding-left: 17px;
-  padding-right: 30px;
-  padding-top: 30px;
+  max-width: 100%;
+  margin: 0 auto;
+  border: 4px white transparent;
+  border-radius: 100%;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .SongName {
   font-family: "Arimo", sans-serif;
   color: white;
-  font-size: 30px;
+  font-size: 5em;
   /* float:right; */
 }
 .Artist {
   font-family: "Arimo", sans-serif;
   color: white;
-  font-size: 20px;
+  font-size: 3em;
   /* float: right; */
 }
 
@@ -79,37 +91,30 @@ body {
 .rank {
   font-family: "Arimo", sans-serif;
   color: white;
-  font-size: 20px;
-  float: left;
-}
-
-.Artistcont {
-  display: flex;
-}
-
-.ArtistRank {
-  font-family: "Arimo", sans-serif;
-  color: white;
-  font-size: 20px;
+  font-size: 10em;
   /* float: left; */
 }
 
-.EntryArtistImg {
-  height: auto;
-  width: auto;
-  max-width: 70px;
-  max-height: 70px;
-  /* float: left; */
+.nowplayingcont {
+  border: transparent;
+  margin-top: 5% !important;
 }
 
-.entryArtistText {
-  /* text-align: center; */
-}
-
-.ArtistName {
-  font-family: "Arimo", sans-serif;
+.NowplayingSong {
+  font-family: "Gotham", sans-serif;
   color: white;
-  font-size: 20px;
-  align-self: flex-end;
+  font-size: 10em;
+  /* float: right; */
+}
+.NowplayingArtist {
+  font-family: "Gotham", sans-serif;
+  color: white;
+  font-size: 6em;
+  /* float: right; */
+}
+.NowplayingAlbum {
+  font-family: "Gotham", sans-serif;
+  color: white;
+  font-size: 3em;
   /* float: right; */
 }
