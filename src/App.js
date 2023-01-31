@@ -33,7 +33,7 @@ function App() {
   const [artistbool, setArtistBool] = useState(false);
   const [nowplayingbool, setplayingbool] = useState(false);
 
-  const [visible, setvisibility] = useState("visible");
+  const [visible, setvisibility] = useState("block");
 
   const basic = Buffer.from(`${client_id}:${client_secret}`).toString("base64");
   const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
@@ -121,14 +121,14 @@ function App() {
     setArtistBool(false);
     setTrackBool(true);
     setplayingbool(false);
-    setvisibility("visible");
+    setvisibility("block");
   }
 
   function artistchange() {
     setArtistBool(true);
     setTrackBool(false);
     setplayingbool(false);
-    setvisibility("visible");
+    setvisibility("block");
   }
 
   function nowplayingchange() {
@@ -136,7 +136,12 @@ function App() {
     setArtistBool(false);
     setTrackBool(false);
     setplayingbool(true);
-    setvisibility("hidden");
+    setvisibility("none");
+  }
+
+  function goBack() {
+    setvisibility("block");
+    trackchange();
   }
   const getPlaying = async () => {
     const response = await getNowPlaying();
@@ -146,9 +151,11 @@ function App() {
         img: result.item.album.images[0].url,
         artist: result.item.album.artists[0].name,
         song: result.item.name,
+        album: result.item.album.name,
       };
 
       setnowplaying(nowplayingobject);
+      console.log(result);
     });
   };
 
@@ -634,39 +641,61 @@ function App() {
 
   return (
     <div className="BCont">
-      <div className="buttoncont1">
-        <button className="TimeButton" onClick={trackchange}>
-          Tracks
-        </button>
-        <button className="TimeButton" onClick={artistchange}>
-          Artists
-        </button>
-        <button className="TimeButton" onClick={nowplayingchange}>
-          Now Playing
-        </button>
+      <div className="buttoncont1 text-center" style={{ display: visible }}>
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button
+            type="button"
+            class="btn btn-outline-light"
+            // className="TimeButton"
+            onClick={trackchange}
+            style={{ display: visible }}
+          >
+            Tracks
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-light"
+            // className="TimeButton"
+            onClick={artistchange}
+            style={{ display: visible }}
+          >
+            Artists
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-light"
+            // className="TimeButton"
+            onClick={nowplayingchange}
+            style={{ display: visible }}
+          >
+            What I'm listening to right now
+          </button>
+        </div>
       </div>
       <div className="buttoncont2">
-        <button
-          className="TimeButton"
-          onClick={shortterm}
-          style={{ visibility: visible }}
-        >
-          This Month
-        </button>
-        <button
-          style={{ visibility: visible }}
-          className="TimeButton"
-          onClick={mediumterm}
-        >
-          Last 6 Months
-        </button>
-        <button
-          style={{ visibility: visible }}
-          className="TimeButton"
-          onClick={longterm}
-        >
-          All Time
-        </button>
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button
+            className="btn btn-outline-light"
+            onClick={shortterm}
+            style={{ display: visible }}
+          >
+            This Month
+          </button>
+          <button
+            style={{ display: visible }}
+            className="btn btn-outline-light"
+            onClick={mediumterm}
+          >
+            Last 6 Months
+          </button>
+          <button
+            style={{ display: visible }}
+            className="btn btn-outline-light"
+            onClick={longterm}
+          >
+            All Time
+          </button>
+        </div>
       </div>
       {trackbool && short && (
         <div>
@@ -762,6 +791,8 @@ function App() {
             img={nowplaying.img}
             artist={nowplaying.artist}
             song={nowplaying.song}
+            goBack={goBack}
+            album={nowplaying.album}
           />
         </div>
       )}

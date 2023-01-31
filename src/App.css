@@ -11,13 +11,14 @@ body {
 }
 .BCont {
   background-color: black;
-  height: 100%;
+  height: 100vh;
   width: 100%;
 }
 
 .buttoncont1 {
   display: flex;
   justify-content: center;
+  margin: auto;
   padding-top: 20px;
   padding-bottom: 20px;
 }
@@ -53,32 +54,33 @@ body {
 }
 
 .container {
+}
+
+.entrycontainer {
   margin-top: 20px !important;
   border: 4px white solid;
-  border-radius: 20px;
+  border-radius: 12px;
 }
 
 .EntryImg {
   height: auto;
   width: auto;
-  max-width: 70%;
+  max-width: 80%;
   margin: 0 auto;
-  border: 4px white transparent;
-  border-radius: 100%;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  /* border: 4px white transparent; */
+  /* border-radius: 80px; */
 }
 
 .SongName {
   font-family: "Arimo", sans-serif;
   color: white;
-  font-size: 6vw;
+  font-size: 3vw;
   /* float:right; */
 }
 .Artist {
   font-family: "Arimo", sans-serif;
   color: white;
-  font-size: 3vw;
+  font-size: 1vw;
   /* float: right; */
 }
 
@@ -91,27 +93,57 @@ body {
 .rank {
   font-family: "Arimo", sans-serif;
   color: white;
-  font-size: 7rem;
+  font-size: 3rem;
   /* float: left; */
 }
 
 .nowplayingcont {
-  border: transparent;
-  margin-top: 5% !important;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  background-color: blueviolet;
+  background-size: cover;
+}
+
+.nowplayingrow {
+  /* height: 40%;
+  width: 75%; */
+  margin: auto;
+  background-color: transparent;
+  -webkit-backdrop-filter: blur(30px);
+  backdrop-filter: blur(30px);
+  padding: 20px;
+  border-radius: 30px;
+  /* margin: 30px; */
 }
 
 .NowplayingImg {
-  max-width: 75%;
+  max-width: 100%;
 }
-
+.notblurred {
+}
+.nowplayingtextcont {
+}
 .NowplayingSong {
   font-family: "Gotham", sans-serif;
   color: white;
-  font-size: 6rem;
+  font-size: 3rem;
 }
 .NowplayingArtist {
   font-family: "Gotham", sans-serif;
   color: white;
-  font-size: 3rem;
+  font-size: 1rem;
   letter-spacing: 2px;
+}
+
+#myProgress {
+  width: 100%;
+  background-color: grey;
+  border-radius: 10px;
+}
+
+#myBar {
+  width: 1%;
+  height: 15px;
+  background-color: white;
 }
