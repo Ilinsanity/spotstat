@@ -35,6 +35,12 @@ function App() {
 
   const [visible, setvisibility] = useState("block");
 
+  const [trackhighlight, settrackhighlight] = useState("selectedButton");
+  const [artisthighlight, setartisthighlight] = useState("TimeButton");
+  const [shorthighlight, setshorthighlight] = useState("selectedButton");
+  const [medhighlight, setmedhighlight] = useState("TimeButton");
+  const [longhighlight, setlonghighlight] = useState("TimeButton");
+
   const basic = Buffer.from(`${client_id}:${client_secret}`).toString("base64");
   const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
   const NOW_PLAYING_ENDPOINT = `https://api.spotify.com/v1/me/player/currently-playing`;
@@ -96,11 +102,40 @@ function App() {
     getArtists();
   }, []);
 
+  function trackselected() {
+    settrackhighlight("selectedButton");
+    setartisthighlight("TimeButton");
+  }
+
+  function artistselected() {
+    settrackhighlight("TimeButton");
+    setartisthighlight("selectedButton");
+  }
+
+  function shortselected() {
+    setshorthighlight("selectedButton");
+    setmedhighlight("TimeButton");
+    setlonghighlight("TimeButton");
+  }
+
+  function medselected() {
+    setshorthighlight("TimeButton");
+    setmedhighlight("selectedButton");
+    setlonghighlight("TimeButton");
+  }
+
+  function longselected() {
+    setshorthighlight("TimeButton");
+    setmedhighlight("TimeButton");
+    setlonghighlight("selectedButton");
+  }
+
   function shortterm() {
     setshortbool(true);
     setmediumbool(false);
     setlongbool(false);
     setplayingbool(false);
+    shortselected();
   }
 
   function mediumterm() {
@@ -108,6 +143,7 @@ function App() {
     setmediumbool(true);
     setlongbool(false);
     setplayingbool(false);
+    medselected();
   }
 
   function longterm() {
@@ -115,6 +151,7 @@ function App() {
     setmediumbool(false);
     setlongbool(true);
     setplayingbool(false);
+    longselected();
   }
 
   function trackchange() {
@@ -122,6 +159,7 @@ function App() {
     setTrackBool(true);
     setplayingbool(false);
     setvisibility("block");
+    trackselected();
   }
 
   function artistchange() {
@@ -129,6 +167,7 @@ function App() {
     setTrackBool(false);
     setplayingbool(false);
     setvisibility("block");
+    artistselected();
   }
 
   function nowplayingchange() {
@@ -649,6 +688,7 @@ function App() {
             // className="TimeButton"
             onClick={trackchange}
             style={{ display: visible }}
+            className={`${trackhighlight}`}
           >
             Tracks
           </button>
@@ -658,6 +698,7 @@ function App() {
             // className="TimeButton"
             onClick={artistchange}
             style={{ display: visible }}
+            className={`${artisthighlight}`}
           >
             Artists
           </button>
@@ -667,6 +708,7 @@ function App() {
             // className="TimeButton"
             onClick={nowplayingchange}
             style={{ display: visible }}
+            className="TimeButton"
           >
             What I'm listening to right now
           </button>
@@ -678,6 +720,7 @@ function App() {
             className="btn btn-outline-light"
             onClick={shortterm}
             style={{ display: visible }}
+            class={`${shorthighlight}`}
           >
             This Month
           </button>
@@ -685,6 +728,7 @@ function App() {
             style={{ display: visible }}
             className="btn btn-outline-light"
             onClick={mediumterm}
+            class={`${medhighlight}`}
           >
             Last 6 Months
           </button>
@@ -692,6 +736,7 @@ function App() {
             style={{ display: visible }}
             className="btn btn-outline-light"
             onClick={longterm}
+            class={`${longhighlight}`}
           >
             All Time
           </button>

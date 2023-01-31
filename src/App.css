@@ -28,25 +28,29 @@ body {
 }
 
 .TimeButton {
-  font-family: "Arimo", sans-serif;
-  font-size: 1em;
+  font-family: "Gotham", sans-serif;
+  font-size: 1rem;
   color: white;
   background-color: transparent;
-  border: solid 3px white;
-  margin-right: 20px;
-  border-radius: 30px;
+  border: solid 1px white;
   -webkit-transition: background-color 0.6s;
   transition: background-color 0.6s;
+  border-radius: 7px;
+  /* margin-right: 2% !important; */
 }
 
 .TimeButton:hover {
-  background-color: white;
   color: black;
+  background-color: white;
 }
 
-.Timebutton:active {
-  background-color: white;
-  color: black;
+.selectedButton {
+  /* margin-right: 2% !important; */
+  border-radius: 7px;
+  font-family: "Gotham", sans-serif;
+  font-size: 1em;
+  color: black !important;
+  background-color: white !important;
 }
 
 .cont {
@@ -56,31 +60,49 @@ body {
 .container {
 }
 
+.row {
+  padding: 2%;
+}
+
 .entrycontainer {
-  margin-top: 20px !important;
-  border: 4px white solid;
-  border-radius: 12px;
+  margin-top: 5% !important;
+  border: 7px white;
+  border-style: double;
+  border-radius: 7px;
 }
 
 .EntryImg {
   height: auto;
   width: auto;
-  max-width: 80%;
+  max-width: 100%;
   margin: 0 auto;
   /* border: 4px white transparent; */
   /* border-radius: 80px; */
 }
 
+@media only screen and (max-width: 600px) {
+  .EntryImg {
+    max-width: 100%;
+  }
+}
+
 .SongName {
-  font-family: "Arimo", sans-serif;
+  font-family: "Gotham", sans-serif;
   color: white;
-  font-size: 3vw;
+  font-size: 5rem;
   /* float:right; */
 }
 .Artist {
-  font-family: "Arimo", sans-serif;
+  font-family: "Gotham", sans-serif;
   color: white;
-  font-size: 1vw;
+  font-size: 1rem;
+  /* float: right; */
+}
+
+.Artisttext {
+  font-family: "Gotham", sans-serif;
+  color: white;
+  font-size: 3rem;
   /* float: right; */
 }
 
@@ -91,10 +113,9 @@ body {
 }
 
 .rank {
-  font-family: "Arimo", sans-serif;
+  font-family: "Gotham", sans-serif;
   color: white;
-  font-size: 3rem;
-  /* float: left; */
+  font-size: 7rem;
 }
 
 .nowplayingcont {
