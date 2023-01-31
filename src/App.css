@@ -61,7 +61,7 @@ body {
 .EntryImg {
   height: auto;
   width: auto;
-  max-width: 100%;
+  max-width: 70%;
   margin: 0 auto;
   border: 4px white transparent;
   border-radius: 100%;
@@ -72,13 +72,13 @@ body {
 .SongName {
   font-family: "Arimo", sans-serif;
   color: white;
-  font-size: 5em;
+  font-size: 6vw;
   /* float:right; */
 }
 .Artist {
   font-family: "Arimo", sans-serif;
   color: white;
-  font-size: 3em;
+  font-size: 3vw;
   /* float: right; */
 }
 
@@ -91,7 +91,7 @@ body {
 .rank {
   font-family: "Arimo", sans-serif;
   color: white;
-  font-size: 10em;
+  font-size: 7rem;
   /* float: left; */
 }
 
@@ -100,21 +100,18 @@ body {
   margin-top: 5% !important;
 }
 
+.NowplayingImg {
+  max-width: 75%;
+}
+
 .NowplayingSong {
   font-family: "Gotham", sans-serif;
   color: white;
-  font-size: 10em;
-  /* float: right; */
+  font-size: 6rem;
 }
 .NowplayingArtist {
   font-family: "Gotham", sans-serif;
   color: white;
-  font-size: 6em;
-  /* float: right; */
-}
-.NowplayingAlbum {
-  font-family: "Gotham", sans-serif;
-  color: white;
-  font-size: 3em;
-  /* float: right; */
+  font-size: 3rem;
+  letter-spacing: 2px;
 }
