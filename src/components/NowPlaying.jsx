@@ -14,9 +14,9 @@ function NowPlaying(props) {
   return (
     <div
       className="nowplayingcont"
-      style={{ backgroundImage: `url(${props.img})` }}
+      // style={{ backgroundImage: `url(${props.img})` }}
     >
-      <button onClick={props.goBack} className="btn btn-light">
+      <button onClick={props.goBack} className="btn btn-light nowplayingbutton">
         Back
       </button>
       <div className="row nowplayingrow">
