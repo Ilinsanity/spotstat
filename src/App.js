@@ -684,31 +684,28 @@ function App() {
         <div class="btn-group" role="group" aria-label="Basic example">
           <button
             type="button"
-            class="btn btn-outline-light"
             // className="TimeButton"
             onClick={trackchange}
             style={{ display: visible }}
-            className={`${trackhighlight}`}
+            className={`btn btn-outline-light ${trackhighlight}`}
           >
             Tracks
           </button>
           <button
             type="button"
-            class="btn btn-outline-light"
             // className="TimeButton"
             onClick={artistchange}
             style={{ display: visible }}
-            className={`${artisthighlight}`}
+            className={`btn btn-outline-light ${artisthighlight}`}
           >
             Artists
           </button>
           <button
             type="button"
-            class="btn btn-outline-light"
             // className="TimeButton"
             onClick={nowplayingchange}
             style={{ display: visible }}
-            className="TimeButton"
+            className="btn btn-outline-light TimeButton"
           >
             What I'm listening to right now
           </button>
@@ -717,26 +714,23 @@ function App() {
       <div className="buttoncont2">
         <div class="btn-group" role="group" aria-label="Basic example">
           <button
-            className="btn btn-outline-light"
             onClick={shortterm}
             style={{ display: visible }}
-            class={`${shorthighlight}`}
+            className={`btn btn-outline-light ${shorthighlight}`}
           >
             This Month
           </button>
           <button
             style={{ display: visible }}
-            className="btn btn-outline-light"
             onClick={mediumterm}
-            class={`${medhighlight}`}
+            className={`btn btn-outline-light ${medhighlight}`}
           >
             Last 6 Months
           </button>
           <button
             style={{ display: visible }}
-            className="btn btn-outline-light"
             onClick={longterm}
-            class={`${longhighlight}`}
+            className={`btn btn-outline-light ${longhighlight}`}
           >
             All Time
           </button>
