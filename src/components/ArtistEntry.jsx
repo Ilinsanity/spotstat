@@ -1,20 +1,29 @@
 import React from "react";
-
+import { useEffect, useState } from "react";
 function ArtistEntry(props) {
+  const position = props.pos;
+  const [fadedir, setfadedir] = useState(false);
+  useEffect(() => {
+    if (position % 2 === 0) {
+      setfadedir(true);
+    }
+  }, []);
+
   return (
     <div
       className="container text-center entrycontainer"
-      data-aos="fade-right"
-      data-aos-duration="650"
+      data-aos="zoom-in-up"
+      data-aos-duration="700"
+      data-aos-anchor-placement="top-bottom"
     >
       <div className="row align-items-center">
-        <div class="col-2 col-sm-3">
-          <h1 className="rank align-items-center">{props.pos}</h1>
+        <div class="col-xl-4">
+          <h1 className="rank rankcont">#{props.pos}</h1>
         </div>
-        <div class="col-3 col-sm-4">
+        <div class="col-xl-3">
           <img src={props.img} className="EntryImg"></img>
         </div>
-        <div class="col-7 col-sm-5">
+        <div class="col-xl-5 songartistcont">
           <p className="Artisttext">{props.artist}</p>
         </div>
       </div>

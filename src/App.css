@@ -63,24 +63,25 @@ body {
 }
 
 .entrycontainer {
-  margin-top: 5% !important;
-  border: 7px white;
+  /* margin-top: 2% !important; */
+  /* border: 7px white;
   border-style: double;
-  border-radius: 7px;
+  border-radius: 7px; */
+  max-width: 55%;
 }
 
 .EntryImg {
   height: auto;
   width: auto;
-  max-width: 100%;
+  max-width: 68%;
   margin: 0 auto;
   /* border: 4px white transparent; */
   /* border-radius: 80px; */
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 576px) {
   .EntryImg {
-    max-width: 100%;
+    max-width: 60%;
   }
 }
 
@@ -104,6 +105,19 @@ body {
   /* float: right; */
 }
 
+.rankcont {
+  text-align: right;
+}
+
+@media only screen and (max-width: 576px) {
+  .rankcont {
+    text-align: left;
+  }
+}
+.songartistcont {
+  text-align: left;
+}
+
 .entryText {
   color: white;
   font-size: 20px;
@@ -113,7 +127,7 @@ body {
 .rank {
   font-family: "Gotham", sans-serif;
   color: white;
-  font-size: 7rem;
+  font-size: 6rem;
 }
 
 .nowplayingcont {
@@ -168,16 +182,4 @@ body {
   color: white;
   font-size: 1rem;
   letter-spacing: 2px;
-}
-
-#myProgress {
-  width: 100%;
-  background-color: grey;
-  border-radius: 10px;
-}
-
-#myBar {
-  width: 1%;
-  height: 15px;
-  background-color: white;
 }
