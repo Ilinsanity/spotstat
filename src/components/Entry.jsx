@@ -17,8 +17,8 @@ function Entry(props) {
   return (
     <div
       className="container text-center entrycontainer"
-      data-aos="zoom-in-up"
-      data-aos-duration="750"
+      // data-aos="zoom-in-up"
+      // data-aos-duration="750"
     >
       <div className="row align-items-center">
         <div class="col-xl-4 rankcont">

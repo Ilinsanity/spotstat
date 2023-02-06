@@ -14,7 +14,6 @@ function ArtistEntry(props) {
       className="container text-center entrycontainer"
       data-aos="zoom-in-up"
       data-aos-duration="700"
-      data-aos-anchor-placement="top-bottom"
     >
       <div className="row align-items-center">
         <div class="col-xl-4">

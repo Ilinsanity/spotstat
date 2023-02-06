@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import ArtistEntry from "./components/ArtistEntry";
 import axios from "axios";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import { Buffer } from "buffer";
 import Entry from "./components/Entry";
 import queryString from "query-string";
@@ -100,6 +102,8 @@ function App() {
   useEffect(() => {
     getTracks();
     getArtists();
+    AOS.init();
+    AOS.refresh();
   }, []);
 
   function trackselected() {
