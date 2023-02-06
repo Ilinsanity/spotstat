@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 function Entry(props) {
-  const [songsize, setsongsize] = useState(4);
+  const [songsize, setsongsize] = useState(3);
   const [fadedir, setfadedir] = useState(false);
   const stringsize = props.name + "";
   const position = props.pos;
