@@ -5,10 +5,10 @@
 
 body {
   height: 100%;
-  background-color: black;
+  background-color: #ccf381;
 }
 .BCont {
-  background-color: black;
+  background-color: #ccf381;
   height: 100vh;
   width: 100%;
 }
@@ -28,18 +28,21 @@ body {
 .TimeButton {
   font-family: "Gotham", sans-serif;
   font-size: 1rem;
-  color: white;
+  color: #4831d4;
   background-color: transparent;
-  border: solid 1px white;
+  border: solid 1px #4831d4;
   -webkit-transition: background-color 0.6s;
   transition: background-color 0.6s;
   border-radius: 7px !important;
   /* margin-right: 2% !important; */
 }
 
+/*Limegreen: #CCF381 */
+/*Electric Blue: #4831D4 */
+
 .TimeButton:hover {
-  color: black;
-  background-color: white;
+  color: #ccf381;
+  background-color: #4831d4;
 }
 
 .selectedButton {
@@ -47,12 +50,12 @@ body {
   border-radius: 7px !important;
   font-family: "Gotham", sans-serif;
   font-size: 1em;
-  color: black !important;
-  background-color: white !important;
+  color: #ccf381 !important;
+  background-color: #4831d4 !important;
 }
 
 .cont {
-  border: white 1px solid;
+  border: #4831d4 1px solid;
 }
 
 .container {
@@ -64,10 +67,11 @@ body {
 
 .entrycontainer {
   /* margin-top: 2% !important; */
-  /* border: 7px white;
+  /* border: 7px #4831D4;
   border-style: double;
   border-radius: 7px; */
   max-width: 55%;
+  margin-bottom: 2%;
 }
 
 .EntryImg {
@@ -75,7 +79,7 @@ body {
   width: auto;
   max-width: 68%;
   margin: 0 auto;
-  /* border: 4px white transparent; */
+  /* border: 4px #4831D4 transparent; */
   /* border-radius: 80px; */
 }
 
@@ -87,20 +91,20 @@ body {
 
 .SongName {
   font-family: "Gotham", sans-serif;
-  color: white;
+  color: #4831d4;
   font-size: 5rem;
   /* float:right; */
 }
 .Artist {
   font-family: "Gotham", sans-serif;
-  color: white;
+  color: #4831d4;
   font-size: 1rem;
   /* float: right; */
 }
 
 .Artisttext {
   font-family: "Gotham", sans-serif;
-  color: white;
+  color: #4831d4;
   font-size: 3rem;
   /* float: right; */
 }
@@ -119,14 +123,14 @@ body {
 }
 
 .entryText {
-  color: white;
+  color: #4831d4;
   font-size: 20px;
   /* float: right; */
 }
 
 .rank {
   font-family: "Gotham", sans-serif;
-  color: white;
+  color: #4831d4;
   font-size: 6rem;
 }
 
@@ -134,7 +138,7 @@ body {
   height: 100vh;
   width: 100%;
   display: flex;
-  background-color: black;
+  background-color: #ccf381;
   background-size: cover;
 }
 
@@ -142,7 +146,7 @@ body {
   /* height: 40%;
   width: 75%; */
   margin: auto;
-  background-color: grey;
+  background-color: #4831d4;
   /* -webkit-backdrop-filter: blur(30px);
   backdrop-filter: blur(30px); */
   padding: 20px;
@@ -153,16 +157,16 @@ body {
 .nowplayingbutton {
   font-family: "Gotham", sans-serif;
   font-size: 1rem;
-  color: white;
+  color: #4831d4;
   background-color: transparent;
-  border: solid 1px white;
+  border: solid 1px #4831d4;
   /* -webkit-transition: background-color 0.1s;
   transition: background-color 0.1s; */
 }
 
 .nowplayingbutton:hover {
-  color: black;
-  background-color: white;
+  color: #ccf381;
+  background-color: #4831d4;
 }
 
 .NowplayingImg {
@@ -174,12 +178,12 @@ body {
 }
 .NowplayingSong {
   font-family: "Gotham", sans-serif;
-  color: white;
+  color: #ccf381;
   font-size: 3rem;
 }
 .NowplayingArtist {
   font-family: "Gotham", sans-serif;
-  color: white;
+  color: #ccf381;
   font-size: 1rem;
   letter-spacing: 2px;
 }

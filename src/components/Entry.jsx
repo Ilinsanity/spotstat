@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 function Entry(props) {
   const [songsize, setsongsize] = useState(3);
   const [fadedir, setfadedir] = useState(false);
+  const [last, setlast] = useState(false);
   const stringsize = props.name + "";
   const position = props.pos;
   useEffect(() => {
@@ -13,6 +14,10 @@ function Entry(props) {
     if (position % 2 === 0) {
       setfadedir(true);
     }
+
+    // if (position == 10) {
+    //   setlast(true);
+    // }
   }, []);
   return (
     <div
@@ -25,7 +30,7 @@ function Entry(props) {
           <h1 className="rank">{props.pos}</h1>
         </div>
         <div class="col-xl-3">
-          <img src={props.img} className="EntryImg"></img>
+          <img src={props.img} className="EntryImg" alt="album"></img>
         </div>
         <div class="col-xl-5 songartistcont">
           <h1 className="SongName" style={{ fontSize: `${songsize}rem` }}>
@@ -35,6 +40,19 @@ function Entry(props) {
         </div>
       </div>
       <div className="entryText"></div>
+      {last && (
+        <div>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+        </div>
+      )}
     </div>
   );
 }

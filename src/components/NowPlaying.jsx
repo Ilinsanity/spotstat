@@ -25,15 +25,9 @@ function NowPlaying(props) {
         </div>
 
         <div class="col-8 nowplayingtextcont">
-          <p className="NowplayingSong" style={{ color: colorarray[0] }}>
-            {props.song}
-          </p>
-          <p className="NowplayingArtist" style={{ color: colorarray[1] }}>
-            {props.artist}
-          </p>
-          <p className="NowplayingArtist" style={{ color: colorarray[2] }}>
-            {props.album}
-          </p>
+          <p className="NowplayingSong">{props.song}</p>
+          <p className="NowplayingArtist">{props.artist}</p>
+          <p className="NowplayingArtist">{props.album}</p>
         </div>
       </div>
     </div>
