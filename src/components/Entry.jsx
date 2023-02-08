@@ -8,7 +8,7 @@ function Entry(props) {
   const position = props.pos;
   useEffect(() => {
     if (stringsize.length > 9) {
-      setsongsize(2);
+      setsongsize(1.3);
     }
 
     if (position % 2 === 0) {
@@ -40,19 +40,6 @@ function Entry(props) {
         </div>
       </div>
       <div className="entryText"></div>
-      {last && (
-        <div>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-        </div>
-      )}
     </div>
   );
 }
