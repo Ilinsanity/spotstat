@@ -73,13 +73,22 @@ body {
   max-width: 55%;
 }
 
+.leftside {
+}
+
 .EntryImg {
   height: auto;
-  width: auto;
-  max-width: 68%;
+  max-width: 100%;
   margin: 0 auto;
-  /* border: 4px #4831D4 transparent; */
-  /* border-radius: 80px; */
+  border: 4px #4831d4 solid;
+  /* border-radius: 40px; */
+  animation: mymove 4s infinite;
+}
+
+@keyframes mymove {
+  50% {
+    border-radius: 50px;
+  }
 }
 
 @media only screen and (max-width: 576px) {

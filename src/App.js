@@ -682,6 +682,20 @@ function App() {
     });
   };
 
+  function first5(ogarray) {
+    //     shorttracks
+    // medtracks
+    // longtracks
+    // shortartists
+    // medartists
+    // longartists
+    return ogarray.slice(0, 5);
+  }
+
+  function last5(ogarray) {
+    return ogarray.slice(5, 10);
+  }
+
   return (
     <div className="BCont">
       <div className="buttoncont1 text-center" style={{ display: visible }}>
@@ -741,18 +755,35 @@ function App() {
         </div>
       </div>
       {trackbool && short && (
-        <div>
-          {shorttracks.map((hanni, index) => {
-            return (
-              <Entry
-                key={index}
-                pos={hanni.rank}
-                name={hanni.song}
-                artist={hanni.artist}
-                img={hanni.img}
-              />
-            );
-          })}
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col">
+              {first5(shorttracks).map((hanni, index) => {
+                return (
+                  <Entry
+                    key={index}
+                    pos={hanni.rank}
+                    name={hanni.song}
+                    artist={hanni.artist}
+                    img={hanni.img}
+                  />
+                );
+              })}
+            </div>
+            <div className="col">
+              {last5(shorttracks).map((hanni, index) => {
+                return (
+                  <Entry
+                    key={index}
+                    pos={hanni.rank}
+                    name={hanni.song}
+                    artist={hanni.artist}
+                    img={hanni.img}
+                  />
+                );
+              })}
+            </div>
+          </div>
         </div>
       )}
       {trackbool && medium && (
