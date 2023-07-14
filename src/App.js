@@ -8,6 +8,7 @@ import { Buffer } from "buffer";
 import Entry from "./components/Entry";
 import queryString from "query-string";
 import NowPlaying from "./components/NowPlaying";
+import Recent from "./components/Recent";
 
 function App() {
   const client_id = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
@@ -51,7 +52,7 @@ function App() {
   const NOW_PLAYING_ENDPOINT = `https://api.spotify.com/v1/me/player/currently-playing`;
   const TOP_TRACKS_ENDPOINT = `https://api.spotify.com/v1/me/top/tracks?`;
   const TOP_ARTISTS_ENDPOINT = `https://api.spotify.com/v1/me/top/artists?`;
-  const RECENTLYPLAYED_ENDPOINT = `https://api.spotify.com/v1/me/player/recently-played`;
+  const RECENTLYPLAYED_ENDPOINT = `https://api.spotify.com/v1/me/player/recently-played?`;
 
   const getAccessToken = async () => {
     const response = await fetch(TOKEN_ENDPOINT, {
@@ -68,10 +69,10 @@ function App() {
     return response.json();
   };
 
-  const getRecentlyPlayed = async () => {
+  const getRecentlyPlayedSongs = async () => {
     const { access_token } = await getAccessToken();
 
-    return fetch(RECENTLYPLAYED_ENDPOINT, {
+    return fetch(RECENTLYPLAYED_ENDPOINT + "limit=50", {
       headers: {
         Authorization: `Bearer ${access_token}`,
       },
@@ -220,6 +221,35 @@ function App() {
     setvisibility("block");
     trackchange();
   }
+
+  const getRecentlyPlayed = async () => {
+    const response1 = await getRecentlyPlayedSongs();
+    const ke1 = response1.json();
+    console.log(ke1);
+
+    ke1.then(function (result) {
+      const data = result;
+      console.log(data);
+
+      const array = [];
+
+      for (let i = 1; i <= 50; i++) {
+        const Entry = {
+          rank: i,
+
+          artist: data.items[i - 1].track.album.artists[0].name,
+          img: data.items[i - 1].track.album.images[1].url,
+          song: data.items[i - 1].track.name,
+          playedat: data.items[i - 1].played_at,
+        };
+
+        array.push(Entry);
+      }
+
+      setrecplayed(array);
+    });
+  };
+
   const getPlaying = async () => {
     const response = await getNowPlaying();
     const ke = response.json();
@@ -244,80 +274,18 @@ function App() {
     ke1.then(function (result) {
       const data = result;
       console.log(data);
-      let artist = data.items[0].artists[0].type;
-      let img = data.items[0].album.images[1].url;
-      let song = data.items[0].name;
       const array = [];
-      const Entry1 = {
-        rank: 1,
-        artist: data.items[0].artists[0].name,
-        img: data.items[0].album.images[1].url,
-        song: data.items[0].name,
-      };
-      array.push(Entry1);
-      const Entry2 = {
-        rank: 2,
-        artist: data.items[1].album.artists[0].name,
-        img: data.items[1].album.images[1].url,
-        song: data.items[1].name,
-      };
-      array.push(Entry2);
-      const Entry3 = {
-        rank: 3,
-        artist: data.items[2].artists[0].name,
-        img: data.items[2].album.images[1].url,
-        song: data.items[2].name,
-      };
-      array.push(Entry3);
-      const Entry4 = {
-        rank: 4,
-        artist: data.items[3].artists[0].name,
-        img: data.items[3].album.images[1].url,
-        song: data.items[3].name,
-      };
-      array.push(Entry4);
-      const Entry5 = {
-        rank: 5,
-        artist: data.items[4].artists[0].name,
-        img: data.items[4].album.images[1].url,
-        song: data.items[4].name,
-      };
-      array.push(Entry5);
-      const Entry6 = {
-        rank: 6,
-        artist: data.items[5].artists[0].name,
-        img: data.items[5].album.images[1].url,
-        song: data.items[5].name,
-      };
-      array.push(Entry6);
-      const Entry7 = {
-        rank: 7,
-        artist: data.items[6].artists[0].name,
-        img: data.items[6].album.images[1].url,
-        song: data.items[6].name,
-      };
-      array.push(Entry7);
-      const Entry8 = {
-        rank: 8,
-        artist: data.items[7].artists[0].name,
-        img: data.items[7].album.images[1].url,
-        song: data.items[7].name,
-      };
-      array.push(Entry8);
-      const Entry9 = {
-        rank: 9,
-        artist: data.items[8].artists[0].name,
-        img: data.items[8].album.images[1].url,
-        song: data.items[8].name,
-      };
-      array.push(Entry9);
-      const Entry10 = {
-        rank: 10,
-        artist: data.items[9].artists[0].name,
-        img: data.items[9].album.images[1].url,
-        song: data.items[9].name,
-      };
-      array.push(Entry10);
+
+      for (let i = 1; i <= 10; i++) {
+        const Entry = {
+          rank: i,
+          artist: data.items[i - 1].artists[0].name,
+          img: data.items[i - 1].album.images[1].url,
+          song: data.items[i - 1].name,
+        };
+
+        array.push(Entry);
+      }
       console.log(array);
       setshort(array);
     });
@@ -330,80 +298,18 @@ function App() {
     ke2.then(function (result) {
       const data = result;
       console.log(data);
-      let artist = data.items[0].artists[0].type;
-      let img = data.items[0].album.images[1].url;
-      let song = data.items[0].name;
       const array = [];
-      const Entry1 = {
-        rank: 1,
-        artist: data.items[0].artists[0].name,
-        img: data.items[0].album.images[1].url,
-        song: data.items[0].name,
-      };
-      array.push(Entry1);
-      const Entry2 = {
-        rank: 2,
-        artist: data.items[1].album.artists[0].name,
-        img: data.items[1].album.images[1].url,
-        song: data.items[1].name,
-      };
-      array.push(Entry2);
-      const Entry3 = {
-        rank: 3,
-        artist: data.items[2].artists[0].name,
-        img: data.items[2].album.images[1].url,
-        song: data.items[2].name,
-      };
-      array.push(Entry3);
-      const Entry4 = {
-        rank: 4,
-        artist: data.items[3].artists[0].name,
-        img: data.items[3].album.images[1].url,
-        song: data.items[3].name,
-      };
-      array.push(Entry4);
-      const Entry5 = {
-        rank: 5,
-        artist: data.items[4].artists[0].name,
-        img: data.items[4].album.images[1].url,
-        song: data.items[4].name,
-      };
-      array.push(Entry5);
-      const Entry6 = {
-        rank: 6,
-        artist: data.items[5].artists[0].name,
-        img: data.items[5].album.images[1].url,
-        song: data.items[5].name,
-      };
-      array.push(Entry6);
-      const Entry7 = {
-        rank: 7,
-        artist: data.items[6].artists[0].name,
-        img: data.items[6].album.images[1].url,
-        song: data.items[6].name,
-      };
-      array.push(Entry7);
-      const Entry8 = {
-        rank: 8,
-        artist: data.items[7].artists[0].name,
-        img: data.items[7].album.images[1].url,
-        song: data.items[7].name,
-      };
-      array.push(Entry8);
-      const Entry9 = {
-        rank: 9,
-        artist: data.items[8].artists[0].name,
-        img: data.items[8].album.images[1].url,
-        song: data.items[8].name,
-      };
-      array.push(Entry9);
-      const Entry10 = {
-        rank: 10,
-        artist: data.items[9].artists[0].name,
-        img: data.items[9].album.images[1].url,
-        song: data.items[9].name,
-      };
-      array.push(Entry10);
+
+      for (let i = 1; i <= 10; i++) {
+        const Entry = {
+          rank: i,
+          artist: data.items[i - 1].artists[0].name,
+          img: data.items[i - 1].album.images[1].url,
+          song: data.items[i - 1].name,
+        };
+
+        array.push(Entry);
+      }
       console.log(array);
       setmedium(array);
     });
@@ -416,80 +322,18 @@ function App() {
     ke3.then(function (result) {
       const data = result;
       console.log(data);
-      let artist = data.items[0].artists[0].type;
-      let img = data.items[0].album.images[1].url;
-      let song = data.items[0].name;
+
       const array = [];
-      const Entry1 = {
-        rank: 1,
-        artist: data.items[0].artists[0].name,
-        img: data.items[0].album.images[1].url,
-        song: data.items[0].name,
-      };
-      array.push(Entry1);
-      const Entry2 = {
-        rank: 2,
-        artist: data.items[1].album.artists[0].name,
-        img: data.items[1].album.images[1].url,
-        song: data.items[1].name,
-      };
-      array.push(Entry2);
-      const Entry3 = {
-        rank: 3,
-        artist: data.items[2].artists[0].name,
-        img: data.items[2].album.images[1].url,
-        song: data.items[2].name,
-      };
-      array.push(Entry3);
-      const Entry4 = {
-        rank: 4,
-        artist: data.items[3].artists[0].name,
-        img: data.items[3].album.images[1].url,
-        song: data.items[3].name,
-      };
-      array.push(Entry4);
-      const Entry5 = {
-        rank: 5,
-        artist: data.items[4].artists[0].name,
-        img: data.items[4].album.images[1].url,
-        song: data.items[4].name,
-      };
-      array.push(Entry5);
-      const Entry6 = {
-        rank: 6,
-        artist: data.items[5].artists[0].name,
-        img: data.items[5].album.images[1].url,
-        song: data.items[5].name,
-      };
-      array.push(Entry6);
-      const Entry7 = {
-        rank: 7,
-        artist: data.items[6].artists[0].name,
-        img: data.items[6].album.images[1].url,
-        song: data.items[6].name,
-      };
-      array.push(Entry7);
-      const Entry8 = {
-        rank: 8,
-        artist: data.items[7].artists[0].name,
-        img: data.items[7].album.images[1].url,
-        song: data.items[7].name,
-      };
-      array.push(Entry8);
-      const Entry9 = {
-        rank: 9,
-        artist: data.items[8].artists[0].name,
-        img: data.items[8].album.images[1].url,
-        song: data.items[8].name,
-      };
-      array.push(Entry9);
-      const Entry10 = {
-        rank: 10,
-        artist: data.items[9].artists[0].name,
-        img: data.items[9].album.images[1].url,
-        song: data.items[9].name,
-      };
-      array.push(Entry10);
+      for (let i = 1; i <= 10; i++) {
+        const Entry = {
+          rank: i,
+          artist: data.items[i - 1].artists[0].name,
+          img: data.items[i - 1].album.images[1].url,
+          song: data.items[i - 1].name,
+        };
+
+        array.push(Entry);
+      }
       console.log(array);
       setlong(array);
     });
@@ -504,66 +348,16 @@ function App() {
       console.log(data);
 
       const array = [];
-      const Entry1 = {
-        rank: 1,
-        artist: data.items[0].name,
-        img: data.items[0].images[1].url,
-      };
-      array.push(Entry1);
-      const Entry2 = {
-        rank: 2,
-        artist: data.items[1].name,
-        img: data.items[1].images[1].url,
-      };
-      array.push(Entry2);
-      const Entry3 = {
-        rank: 3,
-        artist: data.items[2].name,
-        img: data.items[2].images[1].url,
-      };
-      array.push(Entry3);
-      const Entry4 = {
-        rank: 4,
-        artist: data.items[3].name,
-        img: data.items[3].images[1].url,
-      };
-      array.push(Entry4);
-      const Entry5 = {
-        rank: 5,
-        artist: data.items[4].name,
-        img: data.items[4].images[1].url,
-      };
-      array.push(Entry5);
-      const Entry6 = {
-        rank: 6,
-        artist: data.items[5].name,
-        img: data.items[5].images[1].url,
-      };
-      array.push(Entry6);
-      const Entry7 = {
-        rank: 7,
-        artist: data.items[6].name,
-        img: data.items[6].images[1].url,
-      };
-      array.push(Entry7);
-      const Entry8 = {
-        rank: 8,
-        artist: data.items[7].name,
-        img: data.items[7].images[1].url,
-      };
-      array.push(Entry8);
-      const Entry9 = {
-        rank: 9,
-        artist: data.items[8].name,
-        img: data.items[8].images[1].url,
-      };
-      array.push(Entry9);
-      const Entry10 = {
-        rank: 10,
-        artist: data.items[9].name,
-        img: data.items[9].images[1].url,
-      };
-      array.push(Entry10);
+      for (let i = 1; i <= 10; i++) {
+        const Entry = {
+          rank: i,
+          artist: data.items[i - 1].name,
+          img: data.items[i - 1].images[1].url,
+        };
+
+        array.push(Entry);
+      }
+
       console.log(array);
       setshortart(array);
     });
@@ -578,66 +372,15 @@ function App() {
       console.log(data);
 
       const array = [];
-      const Entry1 = {
-        rank: 1,
-        artist: data.items[0].name,
-        img: data.items[0].images[1].url,
-      };
-      array.push(Entry1);
-      const Entry2 = {
-        rank: 2,
-        artist: data.items[1].name,
-        img: data.items[1].images[1].url,
-      };
-      array.push(Entry2);
-      const Entry3 = {
-        rank: 3,
-        artist: data.items[2].name,
-        img: data.items[2].images[1].url,
-      };
-      array.push(Entry3);
-      const Entry4 = {
-        rank: 4,
-        artist: data.items[3].name,
-        img: data.items[3].images[1].url,
-      };
-      array.push(Entry4);
-      const Entry5 = {
-        rank: 5,
-        artist: data.items[4].name,
-        img: data.items[4].images[1].url,
-      };
-      array.push(Entry5);
-      const Entry6 = {
-        rank: 6,
-        artist: data.items[5].name,
-        img: data.items[5].images[1].url,
-      };
-      array.push(Entry6);
-      const Entry7 = {
-        rank: 7,
-        artist: data.items[6].name,
-        img: data.items[6].images[1].url,
-      };
-      array.push(Entry7);
-      const Entry8 = {
-        rank: 8,
-        artist: data.items[7].name,
-        img: data.items[7].images[1].url,
-      };
-      array.push(Entry8);
-      const Entry9 = {
-        rank: 9,
-        artist: data.items[8].name,
-        img: data.items[8].images[1].url,
-      };
-      array.push(Entry9);
-      const Entry10 = {
-        rank: 10,
-        artist: data.items[9].name,
-        img: data.items[9].images[1].url,
-      };
-      array.push(Entry10);
+      for (let i = 1; i <= 10; i++) {
+        const Entry = {
+          rank: i,
+          artist: data.items[i - 1].name,
+          img: data.items[i - 1].images[1].url,
+        };
+
+        array.push(Entry);
+      }
       console.log(array);
       setmediumart(array);
     });
@@ -651,66 +394,15 @@ function App() {
       const data = result;
       console.log(data);
       const array = [];
-      const Entry1 = {
-        rank: 1,
-        artist: data.items[0].name,
-        img: data.items[0].images[1].url,
-      };
-      array.push(Entry1);
-      const Entry2 = {
-        rank: 2,
-        artist: data.items[1].name,
-        img: data.items[1].images[1].url,
-      };
-      array.push(Entry2);
-      const Entry3 = {
-        rank: 3,
-        artist: data.items[2].name,
-        img: data.items[2].images[1].url,
-      };
-      array.push(Entry3);
-      const Entry4 = {
-        rank: 4,
-        artist: data.items[3].name,
-        img: data.items[3].images[1].url,
-      };
-      array.push(Entry4);
-      const Entry5 = {
-        rank: 5,
-        artist: data.items[4].name,
-        img: data.items[4].images[1].url,
-      };
-      array.push(Entry5);
-      const Entry6 = {
-        rank: 6,
-        artist: data.items[5].name,
-        img: data.items[5].images[1].url,
-      };
-      array.push(Entry6);
-      const Entry7 = {
-        rank: 7,
-        artist: data.items[6].name,
-        img: data.items[6].images[1].url,
-      };
-      array.push(Entry7);
-      const Entry8 = {
-        rank: 8,
-        artist: data.items[7].name,
-        img: data.items[7].images[1].url,
-      };
-      array.push(Entry8);
-      const Entry9 = {
-        rank: 9,
-        artist: data.items[8].name,
-        img: data.items[8].images[1].url,
-      };
-      array.push(Entry9);
-      const Entry10 = {
-        rank: 10,
-        artist: data.items[9].name,
-        img: data.items[9].images[1].url,
-      };
-      array.push(Entry10);
+      for (let i = 1; i <= 10; i++) {
+        const Entry = {
+          rank: i,
+          artist: data.items[i - 1].name,
+          img: data.items[i - 1].images[1].url,
+        };
+
+        array.push(Entry);
+      }
       console.log(array);
       setlongart(array);
     });
@@ -802,34 +494,17 @@ function App() {
 
       {trackbool && short && (
         <div className="container-fluid">
-          <div className="row">
-            <div className="col">
-              {first5(shorttracks).map((hanni, index) => {
-                return (
-                  <Entry
-                    key={index}
-                    pos={hanni.rank}
-                    name={hanni.song}
-                    artist={hanni.artist}
-                    img={hanni.img}
-                  />
-                );
-              })}
-            </div>
-            <div className="col">
-              {last5(shorttracks).map((hanni, index) => {
-                return (
-                  <Entry
-                    key={index}
-                    pos={hanni.rank}
-                    name={hanni.song}
-                    artist={hanni.artist}
-                    img={hanni.img}
-                  />
-                );
-              })}
-            </div>
-          </div>
+          {shorttracks.map((hanni, index) => {
+            return (
+              <Entry
+                key={index}
+                pos={hanni.rank}
+                name={hanni.song}
+                artist={hanni.artist}
+                img={hanni.img}
+              />
+            );
+          })}
         </div>
       )}
       {trackbool && medium && (
@@ -919,13 +594,14 @@ function App() {
 
       {recplayedbool && (
         <div>
-          {medartists.map((hanni, index) => {
+          {recplayed.map((hanni, index) => {
             return (
-              <ArtistEntry
+              <Recent
                 key={index}
-                pos={hanni.rank}
                 artist={hanni.artist}
                 img={hanni.img}
+                name={hanni.song}
+                played_at={hanni.playedat}
               />
             );
           })}

@@ -85,6 +85,26 @@ body {
   animation: mymove 4s infinite;
 }
 
+.recentImg {
+  height: auto;
+  max-width: 100%;
+  margin: 0 auto;
+  border: 4px #4831d4 solid;
+  /* border-radius: 40px; */
+  /* animation: mymove 4s infinite; */
+  float: right;
+}
+
+.recentcontainer {
+  max-width: 30%;
+}
+
+.recentlongago {
+  font-family: "Gotham", sans-serif;
+  color: #4831d4;
+  font-size: 1rem;
+}
+
 @keyframes mymove {
   50% {
     border-radius: 50px;
