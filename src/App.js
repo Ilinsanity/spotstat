@@ -26,6 +26,7 @@ function App() {
   const [medartists, setmediumart] = useState([]);
   const [longartists, setlongart] = useState([]);
   const [nowplaying, setnowplaying] = useState({});
+  const [recplayed, setrecplayed] = useState([]);
   // const [timerange, setTimeRange] = useState("short_term");
 
   const [short, setshortbool] = useState(true);
@@ -34,6 +35,7 @@ function App() {
   const [trackbool, setTrackBool] = useState(true);
   const [artistbool, setArtistBool] = useState(false);
   const [nowplayingbool, setplayingbool] = useState(false);
+  const [recplayedbool, setrecplayedbool] = useState(false);
 
   const [visible, setvisibility] = useState("block");
 
@@ -42,12 +44,14 @@ function App() {
   const [shorthighlight, setshorthighlight] = useState("selectedButton");
   const [medhighlight, setmedhighlight] = useState("TimeButton");
   const [longhighlight, setlonghighlight] = useState("TimeButton");
+  const [recplayedhighlight, setrecplayedhighlight] = useState("TimeButton");
 
   const basic = Buffer.from(`${client_id}:${client_secret}`).toString("base64");
   const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
   const NOW_PLAYING_ENDPOINT = `https://api.spotify.com/v1/me/player/currently-playing`;
   const TOP_TRACKS_ENDPOINT = `https://api.spotify.com/v1/me/top/tracks?`;
   const TOP_ARTISTS_ENDPOINT = `https://api.spotify.com/v1/me/top/artists?`;
+  const RECENTLYPLAYED_ENDPOINT = `https://api.spotify.com/v1/me/player/recently-played`;
 
   const getAccessToken = async () => {
     const response = await fetch(TOKEN_ENDPOINT, {
@@ -62,6 +66,16 @@ function App() {
       }),
     });
     return response.json();
+  };
+
+  const getRecentlyPlayed = async () => {
+    const { access_token } = await getAccessToken();
+
+    return fetch(RECENTLYPLAYED_ENDPOINT, {
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
+    });
   };
 
   const getNowPlaying = async () => {
@@ -109,11 +123,19 @@ function App() {
   function trackselected() {
     settrackhighlight("selectedButton");
     setartisthighlight("TimeButton");
+    setrecplayedhighlight("TimeButton");
   }
 
   function artistselected() {
     settrackhighlight("TimeButton");
     setartisthighlight("selectedButton");
+    setrecplayedhighlight("TimeButton");
+  }
+
+  function recplayedselected() {
+    settrackhighlight("TimeButton");
+    setartisthighlight("TimeButton");
+    setrecplayedhighlight("selectedButton");
   }
 
   function shortselected() {
@@ -162,6 +184,7 @@ function App() {
     setArtistBool(false);
     setTrackBool(true);
     setplayingbool(false);
+    setrecplayedbool(false);
     setvisibility("block");
     trackselected();
   }
@@ -170,6 +193,7 @@ function App() {
     setArtistBool(true);
     setTrackBool(false);
     setplayingbool(false);
+    setrecplayedbool(false);
     setvisibility("block");
     artistselected();
   }
@@ -179,7 +203,17 @@ function App() {
     setArtistBool(false);
     setTrackBool(false);
     setplayingbool(true);
+    setrecplayedbool(false);
     setvisibility("none");
+  }
+
+  function recentlyplayedchange() {
+    getRecentlyPlayed();
+    setArtistBool(false);
+    setTrackBool(false);
+    setplayingbool(false);
+    setrecplayedbool(true);
+    recplayedselected();
   }
 
   function goBack() {
@@ -721,39 +755,51 @@ function App() {
           <button
             type="button"
             // className="TimeButton"
+            onClick={recentlyplayedchange}
+            style={{ display: visible }}
+            className={`btn btn-outline-light ${recplayedhighlight}`}
+          >
+            Recently Played
+          </button>
+          <button
+            type="button"
+            // className="TimeButton"
             onClick={nowplayingchange}
             style={{ display: visible }}
             className="btn btn-outline-light TimeButton"
           >
-            What I'm listening to right now
+            Currently Playing
           </button>
         </div>
       </div>
-      <div className="buttoncont2">
-        <div class="btn-group" role="group" aria-label="Basic example">
-          <button
-            onClick={shortterm}
-            style={{ display: visible }}
-            className={`btn btn-outline-light ${shorthighlight}`}
-          >
-            This Month
-          </button>
-          <button
-            style={{ display: visible }}
-            onClick={mediumterm}
-            className={`btn btn-outline-light ${medhighlight}`}
-          >
-            Last 6 Months
-          </button>
-          <button
-            style={{ display: visible }}
-            onClick={longterm}
-            className={`btn btn-outline-light ${longhighlight}`}
-          >
-            All Time
-          </button>
+      {!recplayedbool && (
+        <div className="buttoncont2">
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button
+              onClick={shortterm}
+              style={{ display: visible }}
+              className={`btn btn-outline-light ${shorthighlight}`}
+            >
+              This Month
+            </button>
+            <button
+              style={{ display: visible }}
+              onClick={mediumterm}
+              className={`btn btn-outline-light ${medhighlight}`}
+            >
+              Last 6 Months
+            </button>
+            <button
+              style={{ display: visible }}
+              onClick={longterm}
+              className={`btn btn-outline-light ${longhighlight}`}
+            >
+              All Time
+            </button>
+          </div>
         </div>
-      </div>
+      )}
+
       {trackbool && short && (
         <div className="container-fluid">
           <div className="row">
@@ -868,6 +914,21 @@ function App() {
             goBack={goBack}
             album={nowplaying.album}
           />
+        </div>
+      )}
+
+      {recplayedbool && (
+        <div>
+          {medartists.map((hanni, index) => {
+            return (
+              <ArtistEntry
+                key={index}
+                pos={hanni.rank}
+                artist={hanni.artist}
+                img={hanni.img}
+              />
+            );
+          })}
         </div>
       )}
     </div>
