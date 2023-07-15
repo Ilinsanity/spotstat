@@ -3,16 +3,52 @@
   src: url(../src/fonts/Gotham-Black.otf);
 }
 
-body {
-  height: 100%;
-  background-color: #ccf381;
-}
-.BCont {
-  background-color: #ccf381;
-  height: 100vh;
-  width: 100%;
+/*Limegreen: var(--primarycolour) */
+/*Electric Blue: var(--secondarycolour) */
+
+:root {
+  --primarycolour: #4831d4;
+
+  --secondarycolour: #ccf381;
 }
 
+body {
+  height: 100%;
+  background-color: var(--primarycolour);
+}
+.BCont {
+  background-color: var(--primarycolour);
+  height: 100vh;
+  width: 100%;
+  position: relative;
+}
+
+.colourchange {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  margin-right: 10px;
+  margin-bottom: 10px;
+
+  font-family: "Gotham", sans-serif;
+  font-size: 1rem;
+  color: var(--secondarycolour);
+  background-color: transparent;
+  border: solid 3px var(--secondarycolour);
+  -webkit-transition: background-color 0.6s;
+  transition: background-color 0.6s;
+  border-radius: 7px !important;
+}
+
+.colourchange:hover {
+  color: var(--primarycolour);
+  background-color: var(--secondarycolour);
+}
+
+.fontawepalette {
+  font-size: 2rem;
+}
 .buttoncont1 {
   display: flex;
   justify-content: center;
@@ -28,21 +64,18 @@ body {
 .TimeButton {
   font-family: "Gotham", sans-serif;
   font-size: 1rem;
-  color: #4831d4;
+  color: var(--secondarycolour);
   background-color: transparent;
-  border: solid 1px #4831d4;
+  border: solid 1px var(--secondarycolour);
   -webkit-transition: background-color 0.6s;
   transition: background-color 0.6s;
   border-radius: 7px !important;
   /* margin-right: 2% !important; */
 }
 
-/*Limegreen: #CCF381 */
-/*Electric Blue: #4831D4 */
-
 .TimeButton:hover {
-  color: #ccf381;
-  background-color: #4831d4;
+  color: var(--primarycolour);
+  background-color: var(--secondarycolour);
 }
 
 .selectedButton {
@@ -50,12 +83,12 @@ body {
   border-radius: 7px !important;
   font-family: "Gotham", sans-serif;
   font-size: 1em;
-  color: #ccf381 !important;
-  background-color: #4831d4 !important;
+  color: var(--primarycolour) !important;
+  background-color: var(--secondarycolour) !important;
 }
 
 .cont {
-  border: #4831d4 1px solid;
+  border: var(--secondarycolour) 1px solid;
 }
 
 .container {
@@ -67,7 +100,7 @@ body {
 
 .entrycontainer {
   /* margin-top: 2% !important; */
-  /* border: 7px #4831D4;
+  /* border: 7px var(--secondarycolour);
   border-style: double;
   border-radius: 7px; */
   max-width: 55%;
@@ -80,16 +113,16 @@ body {
   height: auto;
   max-width: 100%;
   margin: 0 auto;
-  border: 4px #4831d4 solid;
+  border: 4px var(--secondarycolour) solid;
   /* border-radius: 40px; */
-  animation: mymove 4s infinite;
+  animation: mymove 5s ease-in-out infinite;
 }
 
 .recentImg {
   height: auto;
   max-width: 100%;
   margin: 0 auto;
-  border: 4px #4831d4 solid;
+  border: 4px var(--secondarycolour) solid;
   /* border-radius: 40px; */
   /* animation: mymove 4s infinite; */
   float: right;
@@ -101,7 +134,7 @@ body {
 
 .recentlongago {
   font-family: "Gotham", sans-serif;
-  color: #4831d4;
+  color: var(--secondarycolour);
   font-size: 1rem;
 }
 
@@ -119,20 +152,20 @@ body {
 
 .SongName {
   font-family: "Gotham", sans-serif;
-  color: #4831d4;
+  color: var(--secondarycolour);
   font-size: 5rem;
   /* float:right; */
 }
 .Artist {
   font-family: "Gotham", sans-serif;
-  color: #4831d4;
+  color: var(--secondarycolour);
   font-size: 1rem;
   /* float: right; */
 }
 
 .Artisttext {
   font-family: "Gotham", sans-serif;
-  color: #4831d4;
+  color: var(--secondarycolour);
   font-size: 3rem;
   /* float: right; */
 }
@@ -151,14 +184,14 @@ body {
 }
 
 .entryText {
-  color: #4831d4;
+  color: var(--secondarycolour);
   font-size: 20px;
   /* float: right; */
 }
 
 .rank {
   font-family: "Gotham", sans-serif;
-  color: #4831d4;
+  color: var(--secondarycolour);
   font-size: 6rem;
 }
 
@@ -166,7 +199,7 @@ body {
   height: 100vh;
   width: 100%;
   display: flex;
-  background-color: #ccf381;
+  background-color: var(--primarycolour);
   background-size: cover;
 }
 
@@ -174,7 +207,7 @@ body {
   /* height: 40%;
   width: 75%; */
   margin: auto;
-  background-color: #4831d4;
+  background-color: var(--secondarycolour);
   /* -webkit-backdrop-filter: blur(30px);
   backdrop-filter: blur(30px); */
   padding: 20px;
@@ -185,33 +218,45 @@ body {
 .nowplayingbutton {
   font-family: "Gotham", sans-serif;
   font-size: 1rem;
-  color: #4831d4;
+  color: var(--secondarycolour);
   background-color: transparent;
-  border: solid 1px #4831d4;
+  border: solid 1px var(--secondarycolour);
   /* -webkit-transition: background-color 0.1s;
   transition: background-color 0.1s; */
 }
 
 .nowplayingbutton:hover {
-  color: #ccf381;
-  background-color: #4831d4;
+  color: var(--primarycolour);
+  background-color: var(--secondarycolour);
 }
 
 .NowplayingImg {
   max-width: 100%;
+  border-radius: 100%;
+  animation: rotate 6s linear infinite;
 }
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .notblurred {
 }
 .nowplayingtextcont {
 }
 .NowplayingSong {
   font-family: "Gotham", sans-serif;
-  color: #ccf381;
+  color: var(--primarycolour);
   font-size: 3rem;
 }
 .NowplayingArtist {
   font-family: "Gotham", sans-serif;
-  color: #ccf381;
+  color: var(--primarycolour);
   font-size: 1rem;
   letter-spacing: 2px;
 }

@@ -32,5 +32,8 @@ function NowPlaying(props) {
       </div>
     </div>
   );
+
+  // #ccf381
+  // #4831D4
 }
 export default NowPlaying;

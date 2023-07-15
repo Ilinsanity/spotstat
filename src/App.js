@@ -9,6 +9,8 @@ import Entry from "./components/Entry";
 import queryString from "query-string";
 import NowPlaying from "./components/NowPlaying";
 import Recent from "./components/Recent";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPalette } from "@fortawesome/free-solid-svg-icons";
 
 function App() {
   const client_id = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
@@ -29,6 +31,8 @@ function App() {
   const [nowplaying, setnowplaying] = useState({});
   const [recplayed, setrecplayed] = useState([]);
   // const [timerange, setTimeRange] = useState("short_term");
+
+  const [pColour, setPcolour] = useState("#4831d4");
 
   const [short, setshortbool] = useState(true);
   const [medium, setmediumbool] = useState(false);
@@ -422,8 +426,29 @@ function App() {
     return ogarray.slice(5, 10);
   }
 
+  const changecolours = () => {
+    if (pColour == "#4831d4") {
+      document.documentElement.style.setProperty("--primarycolour", "#ccf381");
+      document.documentElement.style.setProperty(
+        "--secondarycolour",
+        "#4831d4"
+      );
+      setPcolour("#ccf381");
+    } else {
+      document.documentElement.style.setProperty("--primarycolour", "#4831d4");
+      document.documentElement.style.setProperty(
+        "--secondarycolour",
+        "#ccf381"
+      );
+      setPcolour("#4831d4");
+    }
+  };
+
   return (
     <div className="BCont">
+      <button className="colourchange" onClick={changecolours}>
+        <FontAwesomeIcon icon={faPalette} className="fontawepalette" />
+      </button>
       <div className="buttoncont1 text-center" style={{ display: visible }}>
         <div class="btn-group" role="group" aria-label="Basic example">
           <button
