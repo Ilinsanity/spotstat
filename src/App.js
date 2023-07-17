@@ -32,7 +32,7 @@ function App() {
   const [recplayed, setrecplayed] = useState([]);
   // const [timerange, setTimeRange] = useState("short_term");
 
-  const [pColour, setPcolour] = useState("#4831d4");
+  const [pColour, setPcolour] = useState("#ccf381");
 
   const [short, setshortbool] = useState(true);
   const [medium, setmediumbool] = useState(false);
@@ -229,11 +229,11 @@ function App() {
   const getRecentlyPlayed = async () => {
     const response1 = await getRecentlyPlayedSongs();
     const ke1 = response1.json();
-    console.log(ke1);
+    // console.log(ke1);
 
     ke1.then(function (result) {
       const data = result;
-      console.log(data);
+      // console.log(data);
 
       const array = [];
 
@@ -245,6 +245,7 @@ function App() {
           img: data.items[i - 1].track.album.images[1].url,
           song: data.items[i - 1].track.name,
           playedat: data.items[i - 1].played_at,
+          url: data.items[i - 1].track.preview_url,
         };
 
         array.push(Entry);
@@ -266,18 +267,18 @@ function App() {
       };
 
       setnowplaying(nowplayingobject);
-      console.log(result);
+      // console.log(result);
     });
   };
 
   const getTracks = async () => {
     const response1 = await getTopTracks("short_term");
     const ke1 = response1.json();
-    console.log(ke1);
+    // console.log(ke1);
 
     ke1.then(function (result) {
       const data = result;
-      console.log(data);
+      // console.log(data);
       const array = [];
 
       for (let i = 1; i <= 10; i++) {
@@ -286,22 +287,23 @@ function App() {
           artist: data.items[i - 1].artists[0].name,
           img: data.items[i - 1].album.images[1].url,
           song: data.items[i - 1].name,
+          url: data.items[i - 1].preview_url,
         };
 
         array.push(Entry);
       }
-      console.log(array);
+      // console.log(array);
       setshort(array);
     });
     // setTimeRange("medium_term");
 
     const response2 = await getTopTracks("medium_term");
     const ke2 = response2.json();
-    console.log(ke2);
+    // console.log(ke2);
 
     ke2.then(function (result) {
       const data = result;
-      console.log(data);
+      // console.log(data);
       const array = [];
 
       for (let i = 1; i <= 10; i++) {
@@ -310,22 +312,23 @@ function App() {
           artist: data.items[i - 1].artists[0].name,
           img: data.items[i - 1].album.images[1].url,
           song: data.items[i - 1].name,
+          url: data.items[i - 1].preview_url,
         };
 
         array.push(Entry);
       }
-      console.log(array);
+      // console.log(array);
       setmedium(array);
     });
 
     // setTimeRange("long_term");
     const response3 = await getTopTracks("long_term");
     const ke3 = response3.json();
-    console.log(ke3);
+    // console.log(ke3);
 
     ke3.then(function (result) {
       const data = result;
-      console.log(data);
+      // console.log(data);
 
       const array = [];
       for (let i = 1; i <= 10; i++) {
@@ -334,11 +337,12 @@ function App() {
           artist: data.items[i - 1].artists[0].name,
           img: data.items[i - 1].album.images[1].url,
           song: data.items[i - 1].name,
+          url: data.items[i - 1].preview_url,
         };
 
         array.push(Entry);
       }
-      console.log(array);
+      // console.log(array);
       setlong(array);
     });
   };
@@ -346,10 +350,10 @@ function App() {
   const getArtists = async () => {
     const response1 = await getTopArtists("short_term");
     const ke1 = response1.json();
-    console.log(ke1);
+    // console.log(ke1);
     ke1.then(function (result) {
       const data = result;
-      console.log(data);
+      // console.log(data);
 
       const array = [];
       for (let i = 1; i <= 10; i++) {
@@ -362,18 +366,18 @@ function App() {
         array.push(Entry);
       }
 
-      console.log(array);
+      // console.log(array);
       setshortart(array);
     });
     // setTimeRange("medium_term");
 
     const response2 = await getTopArtists("medium_term");
     const ke2 = response2.json();
-    console.log(ke2);
+    // console.log(ke2);
 
     ke2.then(function (result) {
       const data = result;
-      console.log(data);
+      // console.log(data);
 
       const array = [];
       for (let i = 1; i <= 10; i++) {
@@ -385,18 +389,18 @@ function App() {
 
         array.push(Entry);
       }
-      console.log(array);
+      // console.log(array);
       setmediumart(array);
     });
 
     // setTimeRange("long_term");
     const response3 = await getTopArtists("long_term");
     const ke3 = response3.json();
-    console.log(ke3);
+    // console.log(ke3);
 
     ke3.then(function (result) {
       const data = result;
-      console.log(data);
+      // console.log(data);
       const array = [];
       for (let i = 1; i <= 10; i++) {
         const Entry = {
@@ -407,7 +411,7 @@ function App() {
 
         array.push(Entry);
       }
-      console.log(array);
+      // console.log(array);
       setlongart(array);
     });
   };
@@ -527,6 +531,7 @@ function App() {
                 name={hanni.song}
                 artist={hanni.artist}
                 img={hanni.img}
+                url={hanni.url}
               />
             );
           })}
@@ -542,6 +547,7 @@ function App() {
                 name={hanni.song}
                 artist={hanni.artist}
                 img={hanni.img}
+                url={hanni.url}
               />
             );
           })}
@@ -557,6 +563,7 @@ function App() {
                 name={hanni.song}
                 artist={hanni.artist}
                 img={hanni.img}
+                url={hanni.url}
               />
             );
           })}
@@ -627,6 +634,7 @@ function App() {
                 img={hanni.img}
                 name={hanni.song}
                 played_at={hanni.playedat}
+                url={hanni.url}
               />
             );
           })}

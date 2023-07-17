@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import AudioPlayer from "./AudioPlayer";
 function Entry(props) {
   const [songsize, setsongsize] = useState(3);
   const [fadedir, setfadedir] = useState(false);
@@ -37,6 +38,7 @@ function Entry(props) {
             {props.name}
           </h1>
           <p className="Artist">{props.artist}</p>
+          <AudioPlayer url={props.url} />
         </div>
       </div>
       <div className="entryText"></div>
